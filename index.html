@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kaya Kahve · Karşıyaka, İzmir</title>
+<meta name="description" content="Kaya Kahve — Karşıyaka'da günlük kavurma, mevsiminde mutfak ve tek uzun tezgâh.">
+<meta name="theme-color" content="#0b0907">
+<style>
+@font-face{font-family:'Fraunces';src:url('fraunces-var.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Fraunces';src:url('fraunces-italic-var.woff2') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('satoshi-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('satoshi-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('satoshi-700.woff2') format('woff2');font-weight:700;font-display:swap}
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0907;--bg2:#100c09;--panel:#151009;
+  --ink:#f2e7d9;--muted:#a4907c;--line:rgba(242,231,217,.14);--line2:rgba(242,231,217,.07);
+  --amber:#d08b4a;--amber-soft:#e2a86f;--on:#171007;
+  --serif:'Fraunces',Georgia,serif;--sans:'Satoshi','Segoe UI',system-ui,sans-serif;
+  --pad:clamp(22px,5vw,72px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.atla{position:fixed;top:-80px;left:16px;z-index:90;background:var(--amber);color:var(--on);padding:12px 18px;border-radius:999px;font-size:13px;font-weight:600}
+.atla:focus{top:14px}
+.wrap{width:min(1240px,100% - var(--pad)*2);margin-inline:auto}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);font-weight:500}
+
+/* ---- üst menü ---- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:18px var(--pad);transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;border-bottom:1px solid transparent}
+.nav.dolu{background:rgba(11,9,7,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line2)}
+.marka{display:inline-flex;align-items:center;gap:9px;font-family:var(--serif);font-size:20px;font-weight:400;letter-spacing:.01em}
+.marka i{width:6px;height:20px;background:var(--amber);display:inline-block}
+.menu{display:flex;gap:34px}
+.menu a{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,231,217,.78);padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.menu a:hover{color:var(--ink);border-bottom-color:var(--amber)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--amber);color:var(--on);
+  border-radius:999px;padding:13px 26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s}
+.pill:hover{transform:translateY(-1px);background:var(--amber-soft)}
+.pill.ghost{background:transparent;color:var(--ink);border:1px solid rgba(242,231,217,.32)}
+.pill.ghost:hover{background:rgba(242,231,217,.06)}
+
+/* ---- açılış ---- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(11,9,7,.62) 0%,rgba(11,9,7,.18) 34%,rgba(11,9,7,.72) 72%,var(--bg) 100%)}
+.hero .wrap{padding:0 var(--pad) clamp(72px,9vw,120px);width:100%;max-width:1240px}
+.hero-ust{position:absolute;left:0;right:0;top:0;padding:96px var(--pad) 0}
+.hero-ust .wrap{padding:0;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.hero-serit{display:flex;gap:28px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,231,217,.66)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,9.6vw,8.6rem);line-height:.92;letter-spacing:-.028em;max-width:15ch;margin:22px 0 0}
+.hero h1 em{font-style:italic;color:var(--amber-soft)}
+.hero-alt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:clamp(24px,5vw,80px);align-items:end;margin-top:clamp(26px,4vw,44px)}
+.hero-alt p{max-width:34ch;color:rgba(242,231,217,.76);font-size:14.5px;line-height:1.7}
+.hero-alt .not{display:flex;gap:14px;align-items:flex-start;border-top:1px solid var(--line);padding-top:16px}
+.hero-alt .not b{font-family:var(--serif);font-size:26px;font-weight:400;color:var(--amber-soft);line-height:1}
+.hero-alt .not span{font-size:12.5px;line-height:1.6;color:rgba(242,231,217,.72)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(24px,3.4vw,38px)}
+.hero-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(34px,5vw,64px);
+  padding-top:16px;border-top:1px solid var(--line);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,231,217,.6)}
+.hero-foot b{color:var(--ink);font-weight:500}
+
+/* ---- akan şerit ---- */
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--bg)}
+.ticker-in{display:flex;gap:52px;width:max-content;animation:kay 34s linear infinite;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.ticker-in b{color:var(--ink);font-weight:500}
+@keyframes kay{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-in{animation:none}}
+
+/* ---- bölüm iskeleti ---- */
+section{padding:clamp(72px,11vw,150px) 0}
+.bas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:30px;align-items:end;border-top:1px solid var(--line);padding-top:22px}
+.bas .eyebrow{margin-bottom:14px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+h2 em{font-style:italic;color:var(--amber-soft)}
+.bas>p{color:var(--muted);font-size:13.5px;line-height:1.75;max-width:36ch;justify-self:end}
+.not{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* ---- sekmeler ---- */
+.sekme-satir{display:flex;gap:10px;justify-content:center;margin:clamp(30px,4vw,48px) 0}
+.sekme{border:1px solid var(--line);border-radius:999px;padding:10px 20px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:.2s}
+.sekme[aria-selected="true"]{background:var(--amber);border-color:transparent;color:var(--on);font-weight:700}
+
+/* ---- ürün kartları ---- */
+.kartlar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.8vw,20px);margin-top:clamp(20px,3vw,30px)}
+.kart{border:1px solid var(--line);background:linear-gradient(180deg,rgba(242,231,217,.035),transparent);display:flex;flex-direction:column}
+.kart figure{position:relative;overflow:hidden;aspect-ratio:4/3;margin:0}
+.kart img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.03) brightness(.95);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.kart:hover img{transform:scale(1.045)}
+.kart-in{padding:22px 22px 0;display:flex;flex-direction:column;gap:12px;flex:1}
+.kart h3{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1;letter-spacing:-.01em}
+.kart .mikro{display:flex;flex-direction:column;gap:4px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+.kart p{color:var(--muted);font-size:13px;line-height:1.68;margin-top:2px}
+.kart-alt{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid var(--line2);margin-top:auto;padding:16px 22px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.kart-alt b{font-family:var(--serif);font-size:18px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:400}
+
+/* ---- vitrin filmi ---- */
+.film-bant{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(12px,2vw,22px);margin-top:clamp(28px,4vw,44px)}
+.film{position:relative;margin:0;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#0e0b08}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.film figcaption{position:absolute;left:20px;right:20px;bottom:16px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,231,217,.8)}
+.film figcaption b{font-family:var(--serif);font-size:18px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink)}
+.kucuk-kartlar{display:grid;gap:10px}
+.kutu{display:grid;grid-template-columns:84px minmax(0,1fr);gap:14px;align-items:center;border:1px solid var(--line);padding:10px}
+.kutu img{width:84px;height:84px;object-fit:cover}
+.kutu span{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber)}
+.kutu h3{font-family:var(--serif);font-weight:400;font-size:17px;margin:3px 0 4px}
+.kutu p{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* ---- demleme sayacı ---- */
+.ritual{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(28px,5vw,72px);align-items:center;border-top:1px solid var(--line);padding-top:clamp(28px,4vw,48px)}
+.ritual h2{max-width:16ch}
+.ritual>div>p{color:var(--muted);font-size:14px;line-height:1.75;max-width:36ch;margin-top:18px}
+.adimlar{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:clamp(30px,4vw,44px)}
+.adim{border-top:1px solid var(--line);padding-top:14px}
+.adim span{font-family:var(--serif);font-size:20px;color:var(--amber)}
+.adim b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;margin:8px 0 4px}
+.adim p{font-size:12px;color:var(--muted);line-height:1.6}
+.sayac{border:1px solid var(--line);background:radial-gradient(120% 100% at 50% 0%,rgba(208,139,74,.12),transparent 60%);padding:clamp(24px,3vw,36px);text-align:center}
+.halka{width:min(230px,62vw);aspect-ratio:1;margin:0 auto;border-radius:50%;display:grid;place-items:center;position:relative;
+  background:conic-gradient(var(--amber) calc(var(--p,0)*1%),rgba(242,231,217,.08) 0);transition:background .2s linear}
+.halka:before{content:"";position:absolute;inset:1px;border-radius:50%;background:#0f0b08}
+.halka b{position:relative;font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,6vw,2.9rem);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.halka b small{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-top:6px}
+.sayac .pill{margin-top:22px;width:100%;padding-block:15px}
+.sayac .not{margin-top:12px}
+
+/* ---- mekân ---- */
+.mekan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.mekan figure{overflow:hidden;border:1px solid var(--line);margin:0;aspect-ratio:4/3}
+.mekan img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(.92)}
+.mekan h2{margin:18px 0 20px}
+.mekan p{color:var(--muted);font-size:14px;line-height:1.8;max-width:40ch}
+.mekan dl{display:grid;gap:0;margin-top:26px;border-top:1px solid var(--line)}
+.mekan dl div{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line2)}
+.mekan dt{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.mekan dd{font-family:var(--serif);font-size:15px;text-align:right}
+
+/* ---- SSS ---- */
+.sss-liste{border-top:1px solid var(--line);margin-top:clamp(26px,4vw,40px)}
+.sss{border-bottom:1px solid var(--line);padding:22px 0}
+.sss summary{display:flex;justify-content:space-between;align-items:center;gap:20px;list-style:none;cursor:pointer;font-family:var(--serif);font-weight:400;font-size:clamp(1.05rem,1.6vw,1.3rem)}
+.sss summary::-webkit-details-marker{display:none}
+.sss summary:after{content:"+";color:var(--amber);font-size:1.3rem;line-height:1}
+.sss[open] summary:after{content:"–"}
+.sss p{color:var(--muted);font-size:13.5px;line-height:1.75;max-width:64ch;margin-top:12px}
+
+/* ---- form ---- */
+.form-bant{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,72px);align-items:start}
+.form-bant h2{margin:16px 0 18px}
+.form-bant>div>p{color:var(--muted);font-size:14px;line-height:1.75;max-width:34ch}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
+.alan{display:flex;flex-direction:column;gap:7px}
+.alan.tam{grid-column:1/-1}
+label{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--ink);
+  padding:10px 0;font:inherit;font-size:14px;border-radius:0;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--amber)}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--amber) 50%),linear-gradient(135deg,var(--amber) 50%,transparent 50%);
+  background-position:calc(100% - 12px) 18px,calc(100% - 7px) 18px;background-size:5px 5px;background-repeat:no-repeat}
+textarea{resize:vertical;min-height:64px}
+form .pill{grid-column:1/-1;margin-top:10px;padding-block:15px}
+.form-not{grid-column:1/-1;font-size:11px;line-height:1.6;color:var(--muted)}
+.form-not a{color:var(--ink);border-bottom:1px solid var(--line)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:clamp(40px,6vw,70px) 0 26px}
+.foot-ust{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-start}
+.foot-ust nav{display:flex;gap:26px;flex-wrap:wrap}
+.foot-ust nav a{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.foot-ust nav a:hover{color:var(--ink)}
+.foot-mark{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,15vw,12rem);line-height:.9;letter-spacing:-.03em;
+  color:transparent;-webkit-text-stroke:1px rgba(208,139,74,.45);margin:clamp(28px,5vw,54px) 0 22px}
+.foot-alt{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* ---- mobil ---- */
+.mobil{display:none}
+@media (max-width:900px){
+  .menu{display:none}
+  .hero-ust{padding-top:86px}
+  .hero-serit{display:none}
+  .hero-alt{grid-template-columns:1fr;gap:20px}
+  .hero-alt .not{max-width:100%}
+  .bas{grid-template-columns:1fr}
+  .bas>p{justify-self:start}
+  .kartlar{grid-template-columns:1fr}
+  .film-bant{grid-template-columns:1fr}
+  .ritual{grid-template-columns:1fr}
+  .mekan{grid-template-columns:1fr}
+  .form-bant{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .adimlar{grid-template-columns:1fr;gap:14px}
+  .sayac{order:-1}
+  .mobil{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+    background:rgba(11,9,7,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+  .mobil a{flex:1;text-align:center;padding:12px 6px;border:1px solid var(--line);border-radius:2px;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  .mobil a:first-child{background:var(--amber);color:var(--on);border-color:transparent;font-weight:700}
+  body{padding-bottom:66px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .kart img,.pill{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="atla" href="#icerik">İçeriğe geç</a>
+
+<header class="nav" id="nav">
+  <a class="marka" href="#ust"><i aria-hidden="true"></i>Kaya Kahve</a>
+  <nav class="menu" aria-label="Bölümler">
+    <a href="#kartlar">Menü</a>
+    <a href="#mekan">Mekân</a>
+    <a href="#sss">Sorular</a>
+  </nav>
+  <a class="pill" href="#randevu">Masa ayırt</a>
+</header>
+
+<main id="icerik">
+<section class="hero" id="ust">
+  <video src="klip.mp4" poster="gorsel.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
+  <img class="poster" src="gorsel.jpg" alt="" aria-hidden="true">
+  <div class="hero-ust"><div class="wrap">
+    <p class="hero-serit"><span>Karşıyaka, İzmir</span><span>Türkiye</span></p>
+    <p class="hero-serit"><span>Günlük kavurma</span><span>07.00–23.00</span></p>
+  </div></div>
+  <div class="wrap">
+    <p class="eyebrow">Kafe &amp; mutfak</p>
+    <h1>Sabah burada <em>başlar.</em></h1>
+    <div class="hero-alt">
+      <p>Mevsiminde malzeme, günlük hazırlık, sıcak servis. Kahvaltıdan akşam yemeğine kadar aynı tezgâh, aynı ekip.</p>
+      <div class="not"><b>01</b><span>En iyi hâli, doğru anda: her şey sipariş üzerine hazırlanır.</span></div>
+    </div>
+    <div class="hero-cta">
+      <a class="pill" href="#kartlar">Menüyü gör</a>
+      <a class="pill ghost" href="#mekan">Dükkânı gez</a>
+    </div>
+    <div class="hero-foot">
+      <span><b>Karşıyaka</b> · iskeleden 4 dakika</span>
+      <span><b>07.00–23.00</b> · her gün</span>
+      <span>↓ kaydır</span>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-in">
+  <span><b>Günlük kavurma</b></span><span>·</span><span>Mevsiminde malzeme</span><span>·</span><span>Açık mutfak</span><span>·</span><span>Tek uzun tezgâh</span><span>·</span><span>Sabah 07.00</span><span>·</span>
+  <span><b>Günlük kavurma</b></span><span>·</span><span>Mevsiminde malzeme</span><span>·</span><span>Açık mutfak</span><span>·</span><span>Tek uzun tezgâh</span><span>·</span><span>Sabah 07.00</span><span>·</span>
+</div></div>
+
+<section id="kartlar">
+  <div class="wrap">
+    <div class="bas">
+      <div><p class="eyebrow">Menü · 01</p><h2>En iyi hâliyle, <em>günün her saati.</em></h2></div>
+      <p>Kahvaltı, öğle ve akşam; her servis kendi saatinde, kendi hazırlığıyla. Fiyatlar menüde yazılı.</p>
+    </div>
+    <div class="sekme-satir" role="tablist" aria-label="Servis saatleri">
+      <button class="sekme" role="tab" aria-selected="true">Kahvaltı</button>
+      <button class="sekme" role="tab" aria-selected="false">Öğle</button>
+      <button class="sekme" role="tab" aria-selected="false">Akşam</button>
+    </div>
+    <div class="kartlar">
+      <article class="kart">
+        <figure><img src="vitrin-1.jpg" alt="Kaya Kahve tezgâhı" loading="lazy"></figure>
+        <div class="kart-in">
+          <h3>Serpme</h3>
+          <div class="mikro"><span>09.00–13.00</span><span>Günlük fırın</span><span>Yerel peynir</span></div>
+          <p>Hafta sonu kahvaltısı: fırından sıcak, zeytinyağı ve mevsim reçeli; masaya tek tabakta gelir.</p>
+        </div>
+        <div class="kart-alt"><b>Menüde</b><span>kişi başı</span></div>
+      </article>
+      <article class="kart">
+        <figure><img src="vitrin-2.jpg" alt="Kaya Kahve barı" loading="lazy"></figure>
+        <div class="kart-in">
+          <h3>Öğle</h3>
+          <div class="mikro"><span>12.00–15.00</span><span>İki ana yemek</span><span>Çorba + tatlı</span></div>
+          <p>Her gün değişen iki ana yemek; çorba ve tatlı dahil. Mutfak açık, hazırlık masada görünür.</p>
+        </div>
+        <div class="kart-alt"><b>Menüde</b><span>günlük</span></div>
+      </article>
+      <article class="kart">
+        <figure><img src="vitrin-3.jpg" alt="Kaya Kahve oturma düzeni" loading="lazy"></figure>
+        <div class="kart-in">
+          <h3>Akşam</h3>
+          <div class="mikro"><span>18.00–23.00</span><span>Kısa menü</span><span>Sakin ışık</span></div>
+          <p>Kısa menü, düşük ışık, uzun sohbet. Yirmi kişiye kadar özel salon ayrılabilir.</p>
+        </div>
+        <div class="kart-alt"><b>Menüde</b><span>salon 20 kişi</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="vitrin">
+  <div class="wrap">
+    <div class="bas">
+      <div><p class="eyebrow">Dükkân · 02</p><h2>Tezgâh, cam, <em>sokak.</em></h2></div>
+      <p>Kareler işletmenin kendi vitrininden; bu karelerden 14 saniyelik sessiz bir film üretildi.</p>
+    </div>
+    <div class="film-bant">
+      <figure class="film">
+        <video src="vitrin.mp4" poster="vitrin-1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+        <figcaption><b>Vitrin filmi</b><span>14 sn · sessiz</span></figcaption>
+      </figure>
+      <div class="kucuk-kartlar">
+        <article class="kutu"><img src="vitrin-1.jpg" alt="Cephe ve tabela" loading="lazy"><div><span>01</span><h3>Vitrin</h3><p>Cephe, tabela, giriş.</p></div></article>
+        <article class="kutu"><img src="vitrin-2.jpg" alt="Bar ve espresso makinesi" loading="lazy"><div><span>02</span><h3>Bar</h3><p>Tezgâh ve fincan rafı.</p></div></article>
+        <article class="kutu"><img src="vitrin-3.jpg" alt="Masa düzeni" loading="lazy"><div><span>03</span><h3>Masa</h3><p>Pencere kenarı, gün ışığı.</p></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demleme">
+  <div class="wrap">
+    <div class="ritual">
+      <div>
+        <p class="eyebrow">Ritüel · 03</p>
+        <h2>Düğmeye bas. <em>Fincan dolsun.</em></h2>
+        <p>Her shot 25 saniye. Basınca sayaç başlar; süre dolunca fincan tezgâhta olur.</p>
+        <ol class="adimlar">
+          <li class="adim"><span>01</span><b>Öğütüm</b><p>Her sabah taze öğütülür; kalan çekirdek ertesi güne kalmaz.</p></li>
+          <li class="adim"><span>02</span><b>Demleme</b><p>25 saniye, 92 °C; basınç ve süre her serviste aynı.</p></li>
+          <li class="adim"><span>03</span><b>Servis</b><p>Fincan önceden ısıtılır; süt ayrı gelir.</p></li>
+        </ol>
+      </div>
+      <div class="sayac">
+        <div class="halka" id="halka" style="--p:0"><b id="sure">25.0 s<small>shot süresi</small></b></div>
+        <button class="pill" id="demle" type="button">Demlemeyi başlat</button>
+        <p class="not" id="demleNot">Hazır · 25 saniye</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mekan">
+  <div class="wrap">
+    <div class="mekan">
+      <figure><img src="detay.jpg" alt="Kaya Kahve iç mekân" loading="lazy"></figure>
+      <div>
+        <p class="eyebrow">Mekân · 04</p>
+        <h2>Tek uzun tezgâh, <em>altı koltuk.</em></h2>
+        <p>Dükkân küçük; mutfak salonun içinde. Sipariş verirken hazırlığı görürsünüz, sormadan öğrenirsiniz.</p>
+        <dl>
+          <div><dt>Adres</dt><dd>Karşıyaka, İzmir</dd></div>
+          <div><dt>Saatler</dt><dd>07.00 – 23.00</dd></div>
+          <div><dt>Salon</dt><dd>20 kişiye kadar</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sss">
+  <div class="wrap">
+    <div class="bas">
+      <div><p class="eyebrow">Sorular · 05</p><h2>Sorduklarınız, <em>açıkça.</em></h2></div>
+      <p>Telefonla ya da gelince sorun; burada yazan her şey aynı cevabı taşır.</p>
+    </div>
+    <div class="sss-liste">
+      <details class="sss"><summary>Rezervasyon gerekiyor mu?</summary><p>Hafta içi gerek yok. Hafta sonu altı kişiden kalabalıksanız telefonla yer ayırtın; masa 15 dakika tutulur.</p></details>
+      <details class="sss"><summary>Çekirdek satılıyor mu?</summary><p>Evet, 250 g paket. Kavurma tarihi paketin üstünde yazılı; öğütülmüş ya da çekirdek alabilirsiniz.</p></details>
+      <details class="sss"><summary>Neredesiniz, otopark var mı?</summary><p>Karşıyaka'da, iskeleden yürüme dört dakika. Sokak üstü park yeri akşam saatlerinde daha rahat.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="randevu">
+  <div class="wrap">
+    <div class="form-bant">
+      <div>
+        <p class="eyebrow">Masa · 06</p>
+        <h2>Masanızı <em>ayırtın.</em></h2>
+        <p>Tarih, saat ve kişi sayısını yazın; talep WhatsApp mesajına dönüşür. Onay aynı gün gelir.</p>
+        <p class="not" style="margin-top:26px">Bu sayfada hiçbir bilgi saklanmaz.</p>
+      </div>
+      <form id="randevuForm" data-wa="905551112233" novalidate>
+        <div class="alan"><label for="ad">Ad Soyad</label><input id="ad" name="ad" autocomplete="name" required></div>
+        <div class="alan"><label for="tel">Telefon</label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required></div>
+        <div class="alan"><label for="tarih">Tarih</label><input id="tarih" name="tarih" type="date" required></div>
+        <div class="alan"><label for="saat">Saat</label>
+          <select id="saat" name="saat"><option>09:00</option><option>11:00</option><option>13:00</option><option>16:00</option><option>18:00</option><option>20:00</option></select></div>
+        <div class="alan tam"><label for="kisi">Kişi</label>
+          <select id="kisi" name="kisi"><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+        <div class="alan tam"><label for="not">Not (isteğe bağlı)</label><textarea id="not" name="not" rows="2" placeholder="Pencere kenarı, doğum günü…"></textarea></div>
+        <button class="pill" type="submit">WhatsApp ile gönder</button>
+        <p class="form-not">Form sunucuya gitmez; bilgiler yalnızca WhatsApp mesajında yer alır. <a href="tel:05551112233">Aramayı tercih et</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-ust">
+      <a class="marka" href="#ust"><i aria-hidden="true"></i>Kaya Kahve</a>
+      <nav aria-label="Alt bağlantılar">
+        <a href="#kartlar">Menü</a><a href="#mekan">Mekân</a><a href="#sss">Sorular</a><a href="tel:05551112233">Ara</a>
+      </nav>
+    </div>
+    <div class="foot-mark" aria-hidden="true">Kaya Kahve</div>
+    <div class="foot-alt"><span>© 2026 Kaya Kahve</span><span>Karşıyaka, İzmir</span><span>Tüm hakları saklıdır</span></div>
+  </div>
+</footer>
+
+<div class="mobil" aria-label="Hızlı eylem">
+  <a href="tel:05551112233">Ara</a>
+  <a href="https://wa.me/905551112233" target="_blank" rel="noopener">WhatsApp</a>
+  <a href="#randevu">Masa</a>
+</div>
+
+<script>
+(() => {
+  const nav = document.getElementById('nav');
+  const kap = () => nav.classList.toggle('dolu', window.scrollY > 24);
+  kap(); addEventListener('scroll', kap, {passive:true});
+
+  const halka = document.getElementById('halka');
+  const yazi = document.getElementById('sure');
+  const dugme = document.getElementById('demle');
+  const not = document.getElementById('demleNot');
+  const TOPLAM = 25000;
+  let bas = 0, raf = 0, calisiyor = false;
+
+  const ciz = (kalan) => {
+    halka.style.setProperty('--p', (100 * (TOPLAM - kalan) / TOPLAM).toFixed(1));
+    yazi.innerHTML = (kalan / 1000).toFixed(1) + ' s<small>shot süresi</small>';
+  };
+  const bitir = () => { calisiyor = false; cancelAnimationFrame(raf); ciz(0); dugme.textContent = 'Yeniden başlat'; not.textContent = 'Hazır · fincan tezgâhta'; };
+  const tik = (t) => {
+    if (!bas) bas = t;
+    const kalan = Math.max(0, TOPLAM - (t - bas));
+    ciz(kalan);
+    if (kalan === 0) return bitir();
+    raf = requestAnimationFrame(tik);
+  };
+  dugme.addEventListener('click', () => {
+    if (calisiyor) { cancelAnimationFrame(raf); calisiyor = false; dugme.textContent = 'Devam et'; not.textContent = 'Duraklatıldı'; return; }
+    calisiyor = true; bas = 0; dugme.textContent = 'Duraklat'; not.textContent = 'Demleniyor…';
+    raf = requestAnimationFrame(tik);
+  });
+  ciz(TOPLAM);
+
+  const form = document.getElementById('randevuForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    if (!v('ad') || !v('tel') || !v('tarih')) { not.textContent = 'Ad, telefon ve tarih gerekli'; return; }
+    const metin = `Masa talebi%0AAd: ${encodeURIComponent(v('ad'))}%0ATelefon: ${encodeURIComponent(v('tel'))}%0ATarih: ${v('tarih')}%0ASaat: ${v('saat')}%0AKişi: ${v('kisi')}%0ANot: ${encodeURIComponent(v('not'))}`;
+    window.open(`https://wa.me/${form.dataset.wa}?text=${metin}`, '_blank', 'noopener');
+  });
+})();
+</script>
+</body>
+</html>
